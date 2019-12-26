@@ -15,12 +15,12 @@ char *TheUserIdWhichIsChanged;
 char *ThePassIdchange;
 char ThetUserIdWhichIsChanged[100];
 char ThetPassIdchange[100];
-char updateiniString[100];
-char TheUserId[100];
+char UpdtTheIniStrng[100];
+char userId[100];
 char pass[100];
 
             char date[10];
-             char TheUser[5];
+             char user[5];
              char size[5];
              char TheResult[200];
              int len,pos,s=0,ll;
@@ -42,7 +42,7 @@ char Message1[MAXSZ];
 char Message2[MAXSZ];
 char TheAuthhResultt[100];
 char SendforWhomeeee[MAXSZ];
-char msgSendToWho[MAXSZ];
+char TheMessageSndToWhomeee[MAXSZ];
 char ToConfirmToTheSend[2];
 char TheDrrOption[1];
 int drID;
@@ -65,11 +65,11 @@ printf("s: %s\n ",Message2);
     while(TheAuthhFlag==1)
     {
     printf("Enter your User ID : ");
-    fgets(TheUserId,MAXSZ,stdin);
-    if(TheUserId[0]=='#')
+    fgets(userId,MAXSZ,stdin);
+    if(userId[0]=='#')
     break;
-    n=strlen(TheUserId)+1;
-    send(sockfd,TheUserId,n,0);
+    n=strlen(userId)+1;
+    send(sockfd,userId,n,0);
     
     printf("Enter your Password : ");
         fgets(pass,MAXSZ,stdin);
@@ -91,7 +91,7 @@ printf("s: %s\n ",Message2);
             auth_client_ini("client.ini");
             while(TheMenueeFlagg!=-1)
             {
-           printf("Hello %s\nPlease choose your option:\n1)Read/Delete Messages\n2)Write Message to User\n3)Change config parameters\n4)Quit\nOption->",TheUserId);
+           printf("Hello %s\nPlease choose your option:\n1)Read/Delete Messages\n2)Write Message to User\n3)Change config parameters\n4)Quit\nOption->",userId);
            scanf("%d",&TheMenueeOption);
            if(TheMenueeOption==1)
            {
@@ -101,10 +101,10 @@ printf("s: %s\n ",Message2);
           
          int TheCounterr=0;
          int Beginn1=0;
-         int begin2;
+         int ToBegin2;
          int end;
          char fromWho[Beginn1];
-         char dateUnixaa[10];
+         char dateunixaa[10];
          int TheBeginnFlagg=0;
          char Messages[100][100];
           while(strcmp(Message2,"finish")!=0){
@@ -125,18 +125,18 @@ printf("s: %s\n ",Message2);
                      TheBeginnFlagg=1;
                      }
                      if(Message2[p]=='_')
-                     begin2=p;
+                     ToBegin2=p;
              }
              strcpy(Messages[TheCounterr-2],Message2);
   
              strncat(TheResult,date,10);  
              for(s=0;s<5;s++)
              {
-              TheUser[s]=Messages[TheCounterr-2][s+11];
+              user[s]=Messages[TheCounterr-2][s+11];
              }   
          
             strncat(TheResult,"From:",5); 
-             strncat(TheResult,TheUser,5); 
+             strncat(TheResult,user,5); 
               strncat(TheResult,",",1); 
              for(s=0;s<10;s++)
              {
@@ -146,7 +146,7 @@ printf("s: %s\n ",Message2);
               char date2[10];
               strncpy(date2,date,10);
               struct tm  ts;
-              char       dateConverted[80];
+              char  dateConverted[80];
 
        time_t now = (time_t) strtol(date2, NULL, 10); 
            
@@ -168,7 +168,7 @@ printf("s: %s\n ",Message2);
 
                     printf("\n%d) %s",TheCounterr-1,TheResult);           
                  
-             }//
+             }
             TheCounterr++;
            }
            }
@@ -222,7 +222,7 @@ printf("s: %s\n ",Message2);
                  }
                 if(CheckinggForTheDeleteeee[0]=='N'||CheckinggForTheDeleteeee[0]=='n')
                  {
-                  printf("we have cancelled delete operation\n");
+                  printf("we have cancelled delete operation\n");/////done cancelingg 
                  }
 
               
@@ -245,13 +245,13 @@ printf("s: %s\n ",Message2);
 
    printf("Please Type Text: ");
 
-    scanf("%s",&msgSendToWho);
-    if(msgSendToWho[0]=='#')
+    scanf("%s",&TheMessageSndToWhomeee);
+    if(TheMessageSndToWhomeee[0]=='#')
     break;
-    n=strlen(msgSendToWho)+1;
-    send(sockfd,msgSendToWho,n,0);
+    n=strlen(TheMessageSndToWhomeee)+1;
+    send(sockfd,TheMessageSndToWhomeee,n,0);
 
-   printf("Would you like to Send message to %s? (Y/N)",SendforWhomeeee);
+   printf("Would you like to Send message to %s? (Y/N)",SendforWhomeeee);//Y for yes and N for nooooo
  
     scanf(" %s",&ToConfirmToTheSend);
     if(ToConfirmToTheSend[0]=='#')
@@ -265,12 +265,12 @@ printf("s: %s\n ",Message2);
        access_client_ini("client.ini");
           int Selecteddd;
           char checkSelection[2];
-         printf("Would you change any following value?\n1)TargetServer : %s\n2)TargetPort : %d\n3)TheUserId : %s\n4)Passwd : %s\nOption->",TheServerIp,port,ThetUserIdWhichIsChanged,ThetPassIdchange);
+         printf("Would you change any following value?\n1)TargetServer : %s\n2)TargetPort : %d\n3)userId : %s\n4)Passwd : %s\nOption->",TheServerIp,port,ThetUserIdWhichIsChanged,ThetPassIdchange);
        scanf("%d",&Selecteddd);
        if(Selecteddd==1)
        {
        printf("\nPlease give new TargetServer->");
-       scanf("%s",&updateiniString);
+       scanf("%s",&UpdtTheIniStrng);
        printf("\nDo you want to use this new value? (Y/N))");
        scanf("%s",&checkSelection);
        if(checkSelection[0]=='y'||checkSelection[0]=='Y')
@@ -279,29 +279,29 @@ printf("s: %s\n ",Message2);
                if(Selecteddd==2)
        {
        printf("\nPlease give new TargetPort ->");
-       scanf("%s",&updateiniString);
+       scanf("%s",&UpdtTheIniStrng);
        printf("\nDo you want to use this new value? (Y/N))");
        scanf("%s",&checkSelection);
        if(checkSelection[0]=='y'||checkSelection[0]=='Y')
-        update_client_ini("client.ini",Selecteddd
+        update_client_ini("client.ini",Selecteddd);
         }
-        if(Selecteddd=3)
+        if(Selecteddd==3)
        {
        printf("\nPlease give new User Id  ->");
-       scanf("%s",&updateiniString);
+       scanf("%s",&UpdtTheIniStrng);
        printf("\nDo you want to use this new value? (Y/N))");
        scanf("%s",&checkSelection);
        if(checkSelection[0]=='y'||checkSelection[0]=='Y')
        {
         update_client_ini("client.ini",Selecteddd);
-          n=strlen(updateiniString)+1;
-         send(sockfd,updateiniString,n,0);
+          n=strlen(UpdtTheIniStrng)+1;
+         send(sockfd,UpdtTheIniStrng,n,0);
         }
         }
                                if(Selecteddd==4)
        {
        printf("\nPlease give new Passwd  ->");
-       scanf("%s",&updateiniString);
+       scanf("%s",&UpdtTheIniStrng);
        printf("\nDo you want to use this new value? (Y/N))");
        scanf("%s",&checkSelection);
        if(checkSelection[0]=='y'||checkSelection[0]=='Y')
@@ -313,8 +313,15 @@ printf("s: %s\n ",Message2);
                                  n=1;
     send(sockfd,"4",n,0); 
               TheMenueeFlagg=-1;
-         printf("\nBye Byeeee\n"); 
- }}}
+         printf("\nAu revoir!\n");///finalllyyyyyyy!! 
+       }
+
+            }
+
+  
+  
+ }
+
  return 0;
 }
 void access_client_ini(char * ini_name)
@@ -353,7 +360,7 @@ void update_client_ini(char * ini_name,int Selecteddd)
          dictionary  *   ini ;
 
     ini = iniparser_load(ini_name);
-    if (ini==NULL) {
+  if (ini==NULL) {
         fprintf(stderr, "cannot parse file: %s\n", ini_name);
         
     }
@@ -361,28 +368,28 @@ void update_client_ini(char * ini_name,int Selecteddd)
       fclose(finp);
     if(Selecteddd==1)
     {
-iniparser_set(ini,"client:TargetServer",updateiniString);
+iniparser_set(ini,"client:TargetServer",UpdtTheIniStrng);
 finp = fopen("client.ini", "w");
 iniparser_dump_ini(ini, finp);
 fclose(finp);
     }
     if(Selecteddd==2)
     {
-iniparser_set(ini,"client:TargetPort",updateiniString);
+iniparser_set(ini,"client:TargetPort",UpdtTheIniStrng);
 finp = fopen("client.ini", "w");
 iniparser_dump_ini(ini, finp);
 fclose(finp);
     }
         if(Selecteddd==3)
     {
-iniparser_set(ini,"client:User ID",updateiniString);
+iniparser_set(ini,"client:User ID",UpdtTheIniStrng);
 finp = fopen("client.ini", "w");
 iniparser_dump_ini(ini, finp);
 fclose(finp);
     }
         if(Selecteddd==4)
     {
-iniparser_set(ini,"client:Passwd",updateiniString);
+iniparser_set(ini,"client:Passwd",UpdtTheIniStrng);
 finp = fopen("client.ini", "w");
 iniparser_dump_ini(ini, finp);
 fclose(finp);
@@ -404,7 +411,7 @@ void auth_client_ini(char * ini_name)
                FILE *finp = fopen("client.ini", "w");
       fclose(finp);
 
-iniparser_set(ini,"client:User ID",TheUserId);
+iniparser_set(ini,"client:UserID",userId);
 finp = fopen("client.ini", "w");
 iniparser_dump_ini(ini, finp);
 fclose(finp);
